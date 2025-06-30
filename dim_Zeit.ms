@@ -10,3 +10,22 @@ let
     MitArbeitstag = Table.AddColumn(MitWochentag, "IstArbeitstag", each Date.DayOfWeek([Datum], Day.Monday) < 5)
 in
     MitArbeitstag
+
+// ---------------------------------------------------------------------
+// Dokumentation
+// Abfrage:    dim_Zeit
+// Typ:        Power Query (M)
+// Projekt:    TeamBoard_1.0.0
+// Autor:      Doniman Francisco Peña Parra
+// Erstellt:   30.06.2025
+// Zweck:      Erstellung einer Zeitdimension mit stündlicher Granularität
+// Beschreibung:
+//   - Erstellt für den Zeitraum 01.01.2023 bis 31.12.2026 alle Zeitstempel im Stundentakt
+//   - Ergänzt Spalten für Datum, Stunde, Arbeitstag, Wochentag
+//   - Grundlage für DAX-Maßzahlen mit Zeitbezug (z. B. Netto_Kapazitätsstunden)
+// Datenschutz:
+//   - Enthält keine personen- oder aufgabenbezogenen Informationen
+// ITIL 4 - Prinzipien:
+//   - Halte es einfach und praktisch
+//   - Optimiere und automatisiere
+// ---------------------------------------------------------------------
