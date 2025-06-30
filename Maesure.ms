@@ -68,3 +68,34 @@ RETURN
 //   - Fokussiere dich auf den Wert
 //   - Halte es einfach und praktisch
 // ---------------------------------------------------------------------
+
+Ø_Kapazität_Netto_je_Aufgabe =
+VAR Aufgaben = VALUES(fact_TeamBoard_IT32[ID])
+RETURN
+IF (
+    COUNTROWS(Aufgaben) > 0,
+    AVERAGEX(Aufgaben, [Netto_Kapazitätsstunden]),
+    BLANK()
+)
+
+// ---------------------------------------------------------------------
+// Dokumentation
+// Measure:    Ø_Kapazität_Netto_je_Aufgabe
+// Typ:        Measure
+// Tabelle:    Measure
+// Projekt:    TeamBoard_1.0.0
+// Autor:      Doniman Francisco Peña Parra
+// Erstellt:   30.06.2025
+// Zweck:      Durchschnittlicher Kapazitätsbedarf pro Aufgabe (robust)
+// Beschreibung:
+//   - Aggregiert die Netto_Kapazitätsstunden über eindeutige Aufgaben (ID)
+//   - Liefert nur ein Ergebnis, wenn Aufgaben vorhanden sind
+//   - Vermeidet Fehler bei leerer oder nicht mehr existenter Spalte
+// Datenschutz:
+//   - Keine personenbezogenen Daten enthalten
+// ITIL 4 - Prinzipien:
+//   - Fokussiere dich auf den Wert
+//   - Arbeite iterativ mit Feedback
+//   - Halte es einfach und praktisch
+// ---------------------------------------------------------------------
+
