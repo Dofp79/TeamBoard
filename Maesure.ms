@@ -19,7 +19,7 @@ AVERAGE(fact_TeamBoard_IT32[Time Invest])
 //   - Beginne dort, wo du stehst
 //   - Fokussiere dich auf den Wert
 //   - Halte es einfach und praktisch
-// ---------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------------
 //| Visual                                    | Beschreibung                                       |
 //| ----------------------------------------- | -------------------------------------------------- |
 //| KPI-Card: **Ø\_Kapazität\_je\_Aufgabe**   | Gibt den Aufwand je Item wieder                    |
