@@ -30,19 +30,24 @@ AVERAGE(fact_TeamBoard_IT32[Time Invest])
 //|------------------------------------------------------------------------------------------------|
 
 
-Netto_Kapazitätsstunden =
+Netto_Kapazitätsstunden = 
 VAR Startzeit = SELECTEDVALUE(fact_TeamBoard_IT32[Created])
-VAR Endzeit   = SELECTEDVALUE(fact_TeamBoard_IT32[Modified])
+VAR Endzeit = SELECTEDVALUE(fact_TeamBoard_IT32[Modified])
 
+VAR Kapastunden =
+    CALCULATE (
+        COUNTROWS ( dim_Zeit ),
+        FILTER (
+            dim_Zeit,
+            dim_Zeit[Zeitstempel] >= Startzeit &&
+            dim_Zeit[Zeitstempel] <= Endzeit &&
+            dim_Zeit[IstArbeitstag] = TRUE &&
+            dim_Zeit[Stunde] >= 8 &&
+            dim_Zeit[Stunde] < 20
+        )
+    )
 RETURN
-CALCULATE (
-    COUNTROWS ( dim_Zeit ),
-    dim_Zeit[Zeitstempel] >= Startzeit,
-    dim_Zeit[Zeitstempel] <= Endzeit,
-    dim_Zeit[IstArbeitstag] = TRUE,
-    dim_Zeit[Stunde] >= 8,
-    dim_Zeit[Stunde] < 20
-)
+    Kapastunden
 
 // ---------------------------------------------------------------------
 // Dokumentation
@@ -52,14 +57,12 @@ CALCULATE (
 // Projekt:    TeamBoard_1.0.0
 // Autor:      Doniman Francisco Peña Parra
 // Erstellt:   30.06.2025
-// Zweck:      Berechnung der realen Kapazitätsstunden je Eintrag (Teamboard)
+// Zweck:      Berechnung der Netto-Kapazitätsstunden je Aufgabe (08–20 Uhr, werktags)
 // Beschreibung:
-//   - Nutzt die Spalten [Created] und [Modified] aus fact_TeamBoard_IT32
-//   - Berücksichtigt nur Arbeitszeit zwischen 08:00–20:00 Uhr an Werktagen
-//   - Nutzt dim_Zeit zur stündlichen Auflösung
+//   - Nutzt dim_Zeit und beide Beziehungen Created (aktiv), Modified (inaktiv)
+//   - Nur werktags und nur zwischen 08:00 und 20:00 Uhr
 // Datenschutz:
-//   - Keine personenbezogenen Daten verwendet
-//   - Vollständig auf Teamebene aggregierbar
+//   - Keine personenbezogenen Daten
 // ITIL 4 - Prinzipien:
 //   - Beginne dort, wo du stehst
 //   - Fokussiere dich auf den Wert
