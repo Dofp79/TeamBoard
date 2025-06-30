@@ -27,3 +27,4 @@ AVERAGE(fact_TeamBoard_IT32[Time Invest])
 //| Balken: `Status` → `# Aufgaben`           | WIP/Done/Backlog Verteilung                        |
 //| Matrix: `Team` × `Status`                 | Vergleich: Team-Auslastung / Fortschritt je Team   |
 //| Clustered Bar: `Prio` → `Time Invest`     | Zeigt ob hohe Prioritäten mehr Aufwand verursachen |
+//|------------------------------------------------------------------------------------------------|
